@@ -5,4 +5,5 @@
 [node name="Torch" type="Light2D"]
 texture = ExtResource( 1 )
 shadow_enabled = true
+shadow_filter = 5
 
