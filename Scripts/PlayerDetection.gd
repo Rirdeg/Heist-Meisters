@@ -1,6 +1,6 @@
 extends "res://Scripts/Character.gd"
 
-const FOV_TOLERANCE = 20
+const FOV_TOLERANCE = 18
 const RED = Color("ed2c2c")
 const WHITE = Color("ffffff")
 const MAX_DETECTION_RANGE = 320 
