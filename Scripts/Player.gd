@@ -1,10 +1,17 @@
 extends "res://Scripts/Character.gd"
 
 var motion = Vector2()
+enum VISION_MODE {DARK, NIGHTVISION}
+var vision_mode = VISION_MODE.DARK
+
+#VisionMode timer variables
+var cooldown = 2
+var is_cooldown_ready = true
 
 
 func _ready():
 	Global.Player = self
+	$VisionModeTimer.wait_time = cooldown
 
 
 func _process(delta):
@@ -27,3 +34,24 @@ func update_motion():
 		motion.x = clamp((motion.x + SPEED), 0, MAX_SPEED)
 	else:
 		motion.x = lerp(motion.x, 0, FRICTION)
+
+func _input(event):
+	if Input.is_action_just_pressed("ui_vision_mode_change"):
+		cycle_vision_mode()
+
+func cycle_vision_mode():
+	if is_cooldown_ready == true:
+		is_cooldown_ready = false
+		$VisionModeTimer.start()
+		if vision_mode == VISION_MODE.DARK:
+			get_tree().call_group("interface", "NV_mode")
+			vision_mode = VISION_MODE.NIGHTVISION
+		elif vision_mode == VISION_MODE.NIGHTVISION:
+			get_tree().call_group("interface", "DarkVision_mode")
+			vision_mode = VISION_MODE.DARK
+
+
+
+func _on_VisionModeTimer_timeout():
+	$VisionModeTimer.stop()
+	is_cooldown_ready = true

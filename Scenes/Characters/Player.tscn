@@ -12,3 +12,7 @@ texture = ExtResource( 3 )
 
 [node name="Light2D" type="Light2D" parent="." index="3"]
 texture = ExtResource( 3 )
+
+[node name="VisionModeTimer" type="Timer" parent="." index="4"]
+
+[connection signal="timeout" from="VisionModeTimer" to="." method="_on_VisionModeTimer_timeout"]
