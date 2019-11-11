@@ -24,3 +24,10 @@ margin_right = 41.2604
 margin_bottom = 47.4032
 text = "label3"
 
+[node name="Label4" type="Label" parent="."]
+margin_left = 1.89075
+margin_top = 47.899
+margin_right = 41.8906
+margin_bottom = 61.899
+text = "label4"
+
