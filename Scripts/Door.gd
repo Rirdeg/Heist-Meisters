@@ -9,9 +9,6 @@ var is_in_player_range = false
 # This would fix guards getting stuck on doors or doors not opening when they stay within the bounds
 #-------------------------------------------------- #
 
-# ----------------- BUG ------------ #
-# DOORS CURRENTLY START OPENED BEFORE CLOSING 
-# ---------------------------------- #
 
 func _on_Door_body_entered(body):
 	if not body == Global.Player and not $AnimationPlayer.is_playing():
