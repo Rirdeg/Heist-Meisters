@@ -87,5 +87,6 @@ shape = SubResource( 3 )
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite"]
 occluder = SubResource( 4 )
+
 [connection signal="body_entered" from="." to="." method="_on_Door_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Door_body_exited"]

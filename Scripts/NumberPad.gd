@@ -3,8 +3,10 @@ extends Popup
 onready var display = $VSplitContainer/DisplayContainer/Display
 onready var light = $VSplitContainer/ButtonContainer/ButtonGrid/Light
 
-var combination = [2,1,4,6]
+var combination = []
 var guess = []
+
+signal combination_correct
 
 
 func _ready():
@@ -19,6 +21,8 @@ func connect_buttons():
 
 
 func _on_Button_pressed(button):
+	$AudioStreamPlayer.stream = load("res://SFX/twoTone1.ogg")
+	$AudioStreamPlayer.play()
 	if button == "OK":
 		check_guess()
 	else:
@@ -27,6 +31,8 @@ func _on_Button_pressed(button):
 
 func check_guess():
 	if guess == combination:
+		$AudioStreamPlayer.stream = load("res://SFX/threeTone1.ogg")
+		$AudioStreamPlayer.play()
 		$Timer.start()
 		light.texture = load(Global.green_light)
 	else:
@@ -51,6 +57,7 @@ func update_display():
 
 
 func _on_Timer_timeout():
+	emit_signal("combination_correct")
 	hide()
 	reset_lock()
 
