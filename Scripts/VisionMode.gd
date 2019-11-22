@@ -14,7 +14,7 @@ func NV_mode():
 	color = NIGHTVISION
 	$AudioStreamPlayer2D.stream = load(Global.nightvision_on_sfx)
 	play_sfx()
-	get_tree().call_group("ui_labels", "hide")
+	get_tree().call_group("ui_labels", "show")
 
 
 func DarkVision_mode():
@@ -22,7 +22,7 @@ func DarkVision_mode():
 	color = DARK
 	$AudioStreamPlayer2D.stream = load(Global.nightvision_off_sfx)
 	play_sfx()
-	get_tree().call_group("ui_labels", "show")
+	get_tree().call_group("ui_labels", "hide")
 
 
 func play_sfx():
