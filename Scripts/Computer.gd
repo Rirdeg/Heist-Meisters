@@ -4,10 +4,16 @@ var can_click = false
 var combination
 
 export var combination_length = 4
+export var lock_group = "unset"
+
+signal combination
 
 func _ready():
 	$Light2D.enabled = false
 	generate_combination()
+	emit_signal("combination", combination, lock_group)
+	$Label.rect_rotation = -rotation_degrees
+	$Label.text = lock_group
 
 
 func generate_combination():
@@ -34,3 +40,4 @@ func _input_event(viewport, event, shape_idx):
 	if Input.is_mouse_button_pressed(BUTTON_LEFT) and can_click:
 		$CanvasLayer/ComputerPopup.popup_centered()
 		$Light2D.enabled = true
+

@@ -43,6 +43,7 @@ func cycle_vision_mode():
 	if is_cooldown_ready == true:
 		is_cooldown_ready = false
 		$VisionModeTimer.start()
+		get_tree().call_group("ui_labels", "toggle_labels")
 		if vision_mode == VISION_MODE.DARK:
 			get_tree().call_group("interface", "NV_mode")
 			vision_mode = VISION_MODE.NIGHTVISION
