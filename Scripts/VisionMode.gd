@@ -6,6 +6,7 @@ const NIGHTVISION = Color("2dad29")
 func _ready():
 	color = DARK
 	add_to_group("interface")
+	get_tree().call_group("ui_labels", "hide")
 
 
 func NV_mode():
@@ -13,6 +14,7 @@ func NV_mode():
 	color = NIGHTVISION
 	$AudioStreamPlayer2D.stream = load(Global.nightvision_on_sfx)
 	play_sfx()
+	get_tree().call_group("ui_labels", "hide")
 
 
 func DarkVision_mode():
@@ -20,6 +22,7 @@ func DarkVision_mode():
 	color = DARK
 	$AudioStreamPlayer2D.stream = load(Global.nightvision_off_sfx)
 	play_sfx()
+	get_tree().call_group("ui_labels", "show")
 
 
 func play_sfx():
