@@ -4,6 +4,8 @@ var motion = Vector2()
 enum VISION_MODE {DARK, NIGHTVISION}
 var vision_mode = VISION_MODE.DARK
 
+var disguised = false
+
 #VisionMode timer variables
 var cooldown = 2
 var is_cooldown_ready = true
@@ -12,6 +14,7 @@ var is_cooldown_ready = true
 func _ready():
 	Global.Player = self
 	$VisionModeTimer.wait_time = cooldown
+	
 
 
 func _process(delta):
@@ -38,6 +41,8 @@ func update_motion():
 func _input(event):
 	if Input.is_action_just_pressed("ui_vision_mode_change"):
 		cycle_vision_mode()
+	if Input.is_action_just_pressed("toggle_disguise"):
+		toggle_disguise()
 
 func cycle_vision_mode():
 	if is_cooldown_ready == true:
@@ -56,3 +61,28 @@ func cycle_vision_mode():
 func _on_VisionModeTimer_timeout():
 	$VisionModeTimer.stop()
 	is_cooldown_ready = true
+
+
+func reveal():
+	$Sprite.texture = load(Global.player_sprite)
+	$Light2D.texture = load(Global.player_sprite)
+	$LightOccluder2D.occluder = load(Global.character_occluder)
+	collision_layer = 1
+	disguised = false
+
+
+func disguise():
+	$Sprite.texture = load(Global.box_sprite)
+	$Light2D.texture = load(Global.box_sprite)
+	$LightOccluder2D.occluder = load(Global.box_occluder)
+	collision_layer = 16
+	disguised = true
+
+
+func toggle_disguise():
+	if disguised:
+		reveal()
+	else:
+		disguise()
+
+
