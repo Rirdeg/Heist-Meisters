@@ -1,10 +1,15 @@
 extends "res://Scripts/Character.gd"
 
+export var num_disguises = 3 #Starting number of disguises
+export var disguise_duration = 5 #Time in secs the disguise will last
+export var disguise_slowdown = 0.25
+
 var motion = Vector2()
 enum VISION_MODE {DARK, NIGHTVISION}
 var vision_mode = VISION_MODE.DARK
 
 var disguised = false
+var velocity_multiplyer = 1
 
 #VisionMode timer variables
 var cooldown = 2
@@ -14,12 +19,17 @@ var is_cooldown_ready = true
 func _ready():
 	Global.Player = self
 	$VisionModeTimer.wait_time = cooldown
+	$Timer.wait_time = disguise_duration
+	reveal()
 	
 
 
 func _process(delta):
 	update_motion()
-	move_and_slide(motion)
+	move_and_slide(motion * velocity_multiplyer)
+	if disguised:
+		$Label.rect_rotation = -rotation_degrees
+		$Label.text = str($Timer.time_left).pad_decimals(2)
 
 func update_motion():
 	look_at(get_global_mouse_position())
@@ -64,17 +74,25 @@ func _on_VisionModeTimer_timeout():
 
 
 func reveal():
+	$Label.visible = false
 	$Sprite.texture = load(Global.player_sprite)
 	$Light2D.texture = load(Global.player_sprite)
 	$LightOccluder2D.occluder = load(Global.character_occluder)
 	collision_layer = 1
+	velocity_multiplyer = 1
 	disguised = false
 
 
 func disguise():
+	$Label.visible = true
 	$Sprite.texture = load(Global.box_sprite)
 	$Light2D.texture = load(Global.box_sprite)
 	$LightOccluder2D.occluder = load(Global.box_occluder)
+	
+	velocity_multiplyer = disguise_slowdown
+	$Timer.start()
+	num_disguises -= 1
+	
 	collision_layer = 16
 	disguised = true
 
@@ -82,7 +100,7 @@ func disguise():
 func toggle_disguise():
 	if disguised:
 		reveal()
-	else:
+	elif num_disguises > 0:
 		disguise()
 
 
