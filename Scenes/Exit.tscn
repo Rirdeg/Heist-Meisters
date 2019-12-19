@@ -27,4 +27,5 @@ margin_right = 172.648
 margin_bottom = 87.2499
 theme = ExtResource( 2 )
 text = "Exit"
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
