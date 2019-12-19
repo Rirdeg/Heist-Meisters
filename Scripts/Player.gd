@@ -1,5 +1,6 @@
 extends "res://Scripts/Character.gd"
 
+signal update_disguises #fires to GUI itemlist
 export var num_disguises = 3 #Starting number of disguises
 export var disguise_duration = 5 #Time in secs the disguise will last
 export var disguise_slowdown = 0.25
@@ -21,6 +22,7 @@ func _ready():
 	$VisionModeTimer.wait_time = cooldown
 	$Timer.wait_time = disguise_duration
 	reveal()
+	update_disguise_display()
 	
 
 
@@ -92,6 +94,7 @@ func disguise():
 	velocity_multiplyer = disguise_slowdown
 	$Timer.start()
 	num_disguises -= 1
+	update_disguise_display()
 	
 	collision_layer = 16
 	disguised = true
@@ -104,3 +107,5 @@ func toggle_disguise():
 		disguise()
 
 
+func update_disguise_display():
+	get_tree().call_group("DisguiseDisplay", "update_disguises", num_disguises)
