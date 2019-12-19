@@ -4,6 +4,8 @@ export var num_disguises = 3 #Starting number of disguises
 export var disguise_duration = 5 #Time in secs the disguise will last
 export var disguise_slowdown = 0.25
 
+var has_briefcase = false
+
 var motion = Vector2()
 enum VISION_MODE {DARK, NIGHTVISION}
 var vision_mode = VISION_MODE.DARK
@@ -108,3 +110,10 @@ func toggle_disguise():
 
 func update_disguise_display():
 	get_tree().call_group("DisguiseDisplay", "update_disguises", num_disguises)
+
+
+func collect_loot():
+	var loot = Node.new()
+	loot.set_name("briefcase")
+	add_child(loot)
+	get_tree().call_group("loot_container", "collect_loot")
