@@ -183,7 +183,7 @@ lock_group = "MD Office"
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 393.842, 284.135 )
-num_disguises = 6
+num_disguises = 5
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -259,8 +259,8 @@ margin_right = 1396.42
 margin_bottom = 270.589
 
 [node name="Briefcase" parent="." instance=ExtResource( 17 )]
-position = Vector2( -95.1412, 1057.27 )
+position = Vector2( 416.416, 485.274 )
 [connection signal="combination" from="Computers/Computer" to="LockedDoors/LockedDoor" method="_on_Computer_combination"]
-[connection signal="combination" from="Computers/Computer3" to="LockedDoors/LockedDoor4" method="_on_Computer_combination"]
 [connection signal="combination" from="Computers/Computer3" to="LockedDoors/LockedDoor3" method="_on_Computer_combination"]
+[connection signal="combination" from="Computers/Computer3" to="LockedDoors/LockedDoor4" method="_on_Computer_combination"]
 [connection signal="combination" from="Computers/Computer2" to="LockedDoors/LockedDoor2" method="_on_Computer_combination"]
