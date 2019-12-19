@@ -11,7 +11,7 @@
 [ext_resource path="res://Scenes/Characters/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Characters/SecurityCamera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Characters/Guard.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scripts/VisionMode.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/VisionMode.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/Debug.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/CombinationGenerator.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/GUI.tscn" type="PackedScene" id=15]
@@ -114,7 +114,6 @@ tile_data = PoolIntArray( 65541, 7, 0, 65542, 7, 0, 65543, 9, 0, 65556, 14, 0, 6
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="MapLabels" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="MainOfficeLabel" type="Label" parent="MapLabels" groups=[
 "ui_labels",
@@ -165,7 +164,6 @@ format = 1
 tile_data = PoolIntArray( 65543, -1610612731, 0, 131082, 5, 0, 131091, 2, 0, 131108, -1610612731, 0, 196618, 0, 0, 196629, 7, 0, 458753, 1073741830, 0, 524289, 7, 0, 524302, -1610612727, 0, 524305, 9, 0, 589859, 4, 0, 786451, 1, 0, 917515, 1610612744, 0, 1048574, 1073741826, 0, 1507347, -1610612731, 0, 1769493, 3, 0, 1769494, -1073741817, 0, 1835025, -536870903, 0, 2293777, 9, 0, 2555914, 1610612737, 0, 2752510, -536870905, 0, 2752524, 1610612738, 0, 2752536, -1610612731, 0, 2883583, -1073741819, 0, 2883594, 1, 0, 2883607, -536870905, 0, 2949144, 9, 0, 3145726, -536870906, 0, 3276795, 9, 0, 3342348, 5, 0, 3473406, 6, 0, 3407877, 6, 0, 3407884, 7, 0, 3407886, 7, 0, 3538942, 7, 0, 3473413, 0, 0, 3473424, 9, 0 )
 
 [node name="Computers" type="Node2D" parent="."]
-editor/display_folded = true
 
 [node name="Computer" parent="Computers" instance=ExtResource( 8 )]
 position = Vector2( 1373.11, 1753.29 )
@@ -183,7 +181,6 @@ rotation = 1.56841
 lock_group = "MD Office"
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-editor/display_folded = true
 position = Vector2( 393.842, 284.135 )
 num_disguises = 5
 
@@ -240,13 +237,7 @@ position = Vector2( 104.69, 2298.8 )
 [node name="Guard6" parent="Guards" instance=ExtResource( 11 )]
 position = Vector2( 730.098, 3069.96 )
 
-[node name="VisionMode" type="CanvasModulate" parent="."]
-editor/display_folded = true
-visible = false
-color = Color( 0.0901961, 0.137255, 0.396078, 1 )
-script = ExtResource( 12 )
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="VisionMode"]
+[node name="VisionMode" parent="." instance=ExtResource( 12 )]
 
 [node name="Debug" parent="." instance=ExtResource( 13 )]
 
@@ -261,7 +252,7 @@ margin_right = 1396.42
 margin_bottom = 270.589
 
 [node name="Briefcase" parent="." instance=ExtResource( 17 )]
-position = Vector2( 1246.23, 1508.48 )
+position = Vector2( 1181.18, 1503.21 )
 
 [connection signal="combination" from="Computers/Computer" to="LockedDoors/LockedDoor" method="_on_Computer_combination"]
 [connection signal="combination" from="Computers/Computer3" to="LockedDoors/LockedDoor3" method="_on_Computer_combination"]
