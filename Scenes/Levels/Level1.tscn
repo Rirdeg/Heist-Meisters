@@ -182,6 +182,7 @@ lock_group = "MD Office"
 [node name="Player" parent="." instance=ExtResource( 9 )]
 editor/display_folded = true
 position = Vector2( 393.842, 284.135 )
+num_disguises = 6
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
@@ -250,6 +251,6 @@ script = ExtResource( 12 )
 
 [node name="GUI" parent="." instance=ExtResource( 15 )]
 [connection signal="combination" from="Computers/Computer" to="LockedDoors/LockedDoor" method="_on_Computer_combination"]
-[connection signal="combination" from="Computers/Computer3" to="LockedDoors/LockedDoor3" method="_on_Computer_combination"]
 [connection signal="combination" from="Computers/Computer3" to="LockedDoors/LockedDoor4" method="_on_Computer_combination"]
+[connection signal="combination" from="Computers/Computer3" to="LockedDoors/LockedDoor3" method="_on_Computer_combination"]
 [connection signal="combination" from="Computers/Computer2" to="LockedDoors/LockedDoor2" method="_on_Computer_combination"]
