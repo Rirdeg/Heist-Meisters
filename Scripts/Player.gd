@@ -1,6 +1,5 @@
 extends "res://Scripts/Character.gd"
 
-signal update_disguises #fires to GUI itemlist
 export var num_disguises = 3 #Starting number of disguises
 export var disguise_duration = 5 #Time in secs the disguise will last
 export var disguise_slowdown = 0.25
