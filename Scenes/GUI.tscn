@@ -13,7 +13,6 @@
 [node name="GUI" type="CanvasLayer"]
 
 [node name="SuspicionContainer" type="NinePatchRect" parent="."]
-editor/display_folded = true
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -61,7 +60,6 @@ fill_mode = 4
 script = ExtResource( 5 )
 
 [node name="DisguiseContainer" type="NinePatchRect" parent="."]
-editor/display_folded = true
 margin_left = 10.0
 margin_top = 12.0
 margin_right = 245.0
@@ -80,6 +78,9 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="DisguiseContainer/VBoxContainer"]
 margin_right = 215.0
@@ -101,11 +102,13 @@ script = ExtResource( 7 )
 [node name="LootConatiner" type="NinePatchRect" parent="." groups=[
 "loot_container",
 ]]
-anchor_right = 1.0
+anchor_left = 0.01
+anchor_top = 1.0
+anchor_right = 0.01
 anchor_bottom = 1.0
-margin_left = 10.0
-margin_top = 493.799
-margin_right = -769.0
+margin_left = -0.240001
+margin_top = -106.201
+margin_right = 244.76
 margin_bottom = -12.2014
 theme = ExtResource( 2 )
 texture = ExtResource( 8 )
@@ -114,6 +117,9 @@ patch_margin_top = 12
 patch_margin_right = 12
 patch_margin_bottom = 12
 script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="LootConatiner"]
 margin_left = 20.0
@@ -121,6 +127,9 @@ margin_top = 20.0
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Loot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="LootList" type="ItemList" parent="LootConatiner"]
 margin_left = 15.0
