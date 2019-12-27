@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/CombinationGenerator.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/FloorTiles.tres" type="TileSet" id=2]
@@ -12,8 +12,15 @@
 [ext_resource path="res://Scenes/Exit.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Tilesets/furniture.tres" type="TileSet" id=11]
 [ext_resource path="res://Scenes/Characters/SecurityCamera.tscn" type="PackedScene" id=12]
+[ext_resource path="res://GFX/Interface/PNG/crossair_blueOutline.png" type="Texture" id=13]
+[ext_resource path="res://Scripts/Tutorial.gd" type="Script" id=14]
+[ext_resource path="res://SFX/message.wav" type="AudioStream" id=15]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 100.269, 118.894 )
 
 [node name="Tutorial" type="Node2D"]
+script = ExtResource( 14 )
 
 [node name="CombinationGenerator" parent="." instance=ExtResource( 1 )]
 
@@ -58,10 +65,6 @@ rotation = 1.5708
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 
-[node name="Briefcase" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1173.4, 494.421 )
-rotation = 1.5708
-
 [node name="VisionMode" parent="." instance=ExtResource( 9 )]
 visible = true
 
@@ -79,4 +82,62 @@ tile_data = PoolIntArray( 851985, 2, 0 )
 [node name="SecurityCamera" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1858.62, 703.617 )
 rotation = 0.74711
+
+[node name="ObjectiveMarkers" type="Node2D" parent="."]
+
+[node name="MoveObjective" type="Position2D" parent="ObjectiveMarkers"]
+position = Vector2( 658.841, 292.027 )
+
+[node name="DoorObjective" type="Position2D" parent="ObjectiveMarkers"]
+position = Vector2( 926.828, 351.678 )
+
+[node name="LootObjective" type="Position2D" parent="ObjectiveMarkers"]
+position = Vector2( 1173.45, 499.472 )
+
+[node name="ExitObjective" type="Position2D" parent="ObjectiveMarkers"]
+position = Vector2( 2150.14, 451.395 )
+
+[node name="ObjectivePointer" type="Sprite" parent="."]
+position = Vector2( 740.42, 484.8 )
+texture = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Light2D" type="Light2D" parent="ObjectivePointer"]
+texture = ExtResource( 13 )
+
+[node name="ObjectiveAreas" type="Node2D" parent="."]
+
+[node name="ObjectiveMove" type="Area2D" parent="ObjectiveAreas"]
+position = Vector2( 797.303, 295.122 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveAreas/ObjectiveMove"]
+shape = SubResource( 1 )
+
+[node name="ObjectiveDoor" type="Area2D" parent="ObjectiveAreas"]
+position = Vector2( 1019.74, 302.415 )
+collision_layer = 0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObjectiveAreas/ObjectiveDoor"]
+shape = SubResource( 1 )
+
+[node name="Briefcase" parent="ObjectiveAreas" instance=ExtResource( 8 )]
+position = Vector2( 1173.4, 494.421 )
+rotation = 1.5708
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+
+[node name="Tween" type="Tween" parent="."]
 [connection signal="combination" from="Computer" to="LockedDoor" method="_on_Computer_combination"]
+[connection signal="body_entered" from="ObjectiveAreas/ObjectiveMove" to="." method="_on_ObjectiveMove_body_entered"]
+[connection signal="body_entered" from="ObjectiveAreas/ObjectiveDoor" to="." method="_on_ObjectiveDoor_body_entered"]
+[connection signal="body_entered" from="ObjectiveAreas/Briefcase" to="." method="_on_Briefcase_body_entered"]
