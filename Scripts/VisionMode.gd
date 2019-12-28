@@ -1,9 +1,10 @@
 extends CanvasModulate
 
-const DARK = Color("172365")
+const DARK = Color("08090f")
 const NIGHTVISION = Color("2dad29")
 
 func _ready():
+	visible = true
 	color = DARK
 	add_to_group("interface")
 	get_tree().call_group("ui_labels", "hide")
