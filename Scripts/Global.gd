@@ -4,6 +4,9 @@ var Player
 var navigation
 var destination
 
+# File Links - Must be changed manually
+var tutorial_messages = "res://Scenes/tutorial.json"
+
 
 #Asset Links - MUST BE CHANGED MANUALLY
 var nightvision_on_sfx = "res://SFX/nightvision.wav"

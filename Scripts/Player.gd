@@ -14,7 +14,7 @@ var disguised = false
 var velocity_multiplyer = 1
 
 #VisionMode timer variables
-var cooldown = 2
+var cooldown = 1.2
 var is_cooldown_ready = true
 
 

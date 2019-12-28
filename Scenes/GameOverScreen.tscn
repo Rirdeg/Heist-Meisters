@@ -71,7 +71,7 @@ margin_right = 192.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 125, 30 )
 size_flags_horizontal = 2
-text = "Quit"
+text = "Main Menu"
 
 [connection signal="pressed" from="CenterContainer/NinePatchRect/VBoxContainer/CenterContainer2/TryAgain" to="." method="_on_TryAgain_pressed"]
 [connection signal="pressed" from="CenterContainer/NinePatchRect/VBoxContainer/CenterContainer/Quit" to="." method="_on_Quit_pressed"]
